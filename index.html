@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Weather app</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="assets/images/logo.svg" alt="logo" class="logo" />
+        <div class="unit-1" tabindex="0">
+          <div class="unit js-unit">
+            <img src="assets/images/icon-units.svg" class="icon-unit" />
+            <p class="unit-text">Units</p>
+            <img
+              src="assets/images/icon-dropdown.svg"
+              alt=""
+              class="unit-dropdown"
+            />
+          </div>
+        </div>
+      </header>
+
+      <div class="message">How's the sky looking today?</div>
+
+      <div class="search">
+        <div class="main-search" tabindex="0">
+          <div class="search-container">
+            <img src="assets/images/icon-search.svg" alt="" />
+            <input
+              type="text"
+              placeholder="Search for a place..."
+              class="search-container-input"
+              spellcheck="false"
+            />
+          </div>
+        </div>
+        <div class="btn-container" tabindex="0">
+          <div class="search-button">Search</div>
+        </div>
+      </div>
+
+      <main class="details">
+        <div class="display">
+          <div class="location-date">
+            <p class="location">Berlin, Germany</p>
+            <p class="date">Tuesday, Aug 5, 2025</p>
+          </div>
+          <div class="temp-icon">
+            <img
+              src="assets/images/icon-sunny.webp"
+              alt=""
+              class="display-weather-icon"
+            />
+            <div class="display-temp temp">68°</div>
+          </div>
+        </div>
+
+        <!-- Hourly forecast -->
+        <div class="hourly-forcast-container">
+          <div class="hourly-header">
+            <div class="hourly-header-text">Hourly Forecast</div>
+
+            <div class="day-selection">
+              <span class="hours-day">Tuesday</span>
+              <img
+                src="assets/images/icon-dropdown.svg"
+                alt=""
+                class="day-selection-dropdown"
+              />
+            </div>
+          </div>
+
+          <div class="hour-1-container">
+            <img
+              src="assets/images/icon-overcast.webp"
+              alt=""
+              class="hour-1-weather-icon"
+            />
+            <span class="hour-1-time-degree">
+              <p class="hour-1-time">3 PM</p>
+              <p class="hour-1-degree temp">68&deg;</p>
+            </span>
+          </div>
+
+          <div class="hour-2-container">
+            <img
+              src="assets/images/icon-partly-cloudy.webp"
+              alt=""
+              class="hour-2-weather-icon"
+            />
+            <span class="hour-2-time-degree">
+              <p class="hour-2-time">4 PM</p>
+              <p class="hour-2-degree temp">68&deg;</p>
+            </span>
+          </div>
+
+          <div class="hour-3-container">
+            <img
+              src="assets/images/icon-sunny.webp"
+              alt=""
+              class="hour-3-weather-icon"
+            />
+            <span class="hour-3-time-degree">
+              <p class="hour-3-time">5 PM</p>
+              <p class="hour-3-degree temp">68&deg;</p>
+            </span>
+          </div>
+
+          <div class="hour-4-container">
+            <img
+              src="assets/images/icon-overcast.webp"
+              alt=""
+              class="hour-4-weather-icon"
+            />
+            <span class="hour-4-time-degree">
+              <p class="hour-4-time">6 PM</p>
+              <p class="hour-4-degree temp">66&deg;</p>
+            </span>
+          </div>
+
+          <div class="hour-5-container">
+            <img
+              src="assets/images/icon-snow.webp"
+              alt=""
+              class="hour-5-weather-icon"
+            />
+            <span class="hour-5-time-degree">
+              <p class="hour-5-time">7 PM</p>
+              <p class="hour-5-degree temp">66&deg;</p>
+            </span>
+          </div>
+
+          <div class="hour-6-container">
+            <img
+              src="assets/images/icon-fog.webp"
+              alt=""
+              class="hour-6-weather-icon"
+            />
+            <span class="hour-6-time-degree">
+              <p class="hour-6-time">8 PM</p>
+              <p class="hour-6-degree temp">64&deg;</p>
+            </span>
+          </div>
+
+          <div class="hour-7-container">
+            <img
+              src="assets/images/icon-snow.webp"
+              alt=""
+              class="hour-7-weather-icon"
+            />
+            <span class="hour-7-time-degree">
+              <p class="hour-7-time">9 PM</p>
+              <p class="hour-7-degree temp">63&deg;</p>
+            </span>
+          </div>
+
+          <div class="hour-8-container">
+            <img
+              src="assets/images/icon-overcast.webp"
+              alt=""
+              class="hour-8-weather-icon"
+            />
+            <span class="hour-8-time-degree">
+              <p class="hour-8-time">10 PM</p>
+              <p class="hour-8-degree temp">63&deg;</p>
+            </span>
+          </div>
+        </div>
+
+        <!-- Weather Attributes -->
+        <div class="weather-attributes">
+          <div class="feels-container">
+            <p class="feels-text">Feels Like</p>
+            <p class="feels-data temp">64&deg;</p>
+          </div>
+          <div class="humidity-container">
+            <p class="humidity-text">Humidity</p>
+            <p class="humidity-data">46&percnt;</p>
+          </div>
+          <div class="wind-container">
+            <p class="wind-text">Wind</p>
+            <p class="wind-data js-wind-data">9 mph</p>
+          </div>
+          <div class="precip-container">
+            <p class="precip-text">Precipitation</p>
+            <p class="precip-data">0 in</p>
+          </div>
+        </div>
+
+        <!-- Daily forecast -->
+        <div class="daily-forecast-container">
+          <p class="daily-header">Daily Forecast</p>
+          <div class="days-container">
+            <div class="day-1">
+              <p class="day-1-text">Tue</p>
+              <img
+                src="assets/images/icon-rain.webp"
+                alt=""
+                class="day-1-weather-icon"
+              />
+              <span class="day-1-degrees">
+                <p class="day-1-first-degree temp">68&deg;</p>
+                <p class="day-1-second-degree temp">57&deg;</p>
+              </span>
+            </div>
+
+            <div class="day-2">
+              <p class="day-2-text">Wed</p>
+              <img
+                src="assets/images/icon-drizzle.webp"
+                alt=""
+                class="day-2-weather-icon"
+              />
+              <span class="day-2-degrees">
+                <p class="day-2-first-degree temp">70&deg;</p>
+                <p class="day-2-second-degree temp">59&deg;</p>
+              </span>
+            </div>
+
+            <div class="day-3">
+              <p class="day-3-text">Thu</p>
+              <img
+                src="assets/images/icon-sunny.webp"
+                alt=""
+                class="day-3-weather-icon"
+              />
+              <span class="day-3-degrees">
+                <p class="day-3-first-degree temp">75&deg;</p>
+                <p class="day-3-second-degree temp">57&deg;</p>
+              </span>
+            </div>
+
+            <div class="day-4">
+              <p class="day-4-text">Fri</p>
+              <img
+                src="assets/images/icon-partly-cloudy.webp"
+                alt=""
+                class="day-4-weather-icon"
+              />
+              <span class="day-4-degrees">
+                <p class="day-4-first-degree temp">77&deg;</p>
+                <p class="day-4-second-degree temp">55&deg;</p>
+              </span>
+            </div>
+
+            <div class="day-5">
+              <p class="day-5-text">Sat</p>
+              <img
+                src="assets/images/icon-storm.webp"
+                alt=""
+                class="day-5-weather-icon"
+              />
+              <span class="day-5-degrees">
+                <p class="day-5-first-degree temp">70&deg;</p>
+                <p class="day-5-second-degree temp">59&deg;</p>
+              </span>
+            </div>
+
+            <div class="day-6">
+              <p class="day-6-text">Sun</p>
+              <img
+                src="assets/images/icon-snow.webp"
+                alt=""
+                class="day-6-weather-icon"
+              />
+              <span class="day-6-degrees">
+                <p class="day-6-first-degree temp">77&deg;</p>
+                <p class="day-6-second-degree temp">61&deg;</p>
+              </span>
+            </div>
+
+            <div class="day-7">
+              <p class="day-7-text">Mon</p>
+              <img
+                src="assets/images/icon-fog.webp"
+                alt=""
+                class="day-7-weather-icon"
+              />
+              <span class="day-7-degrees">
+                <p class="day-7-first-degree temp">75&deg;</p>
+                <p class="day-7-second-degree temp">59&deg;</p>
+              </span>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Unit Dropdown -->
+      <div class="unit-options js-unit-options">
+        <div class="unit-switch-con" tabindex="0">
+          <div class="unit-switch js-unit-switch">Switch to Metric</div>
+        </div>
+
+        <div class="temp-options-container">
+          <div class="temp-options-header">Temperature</div>
+          <div class="degree-cel js-degree-cel">
+            <p class="cel-text">Celsius (&deg;C)</p>
+            <img
+              src="assets/images/icon-checkmark.svg"
+              alt=""
+              class="cel-check js-cel-check"
+            />
+          </div>
+          <div class="degree-fahr degree-fahr-imperial js-degree-fahr">
+            <p class="fahr-text">Fahrenheit (&deg;F)</p>
+            <img
+              src="assets/images/icon-checkmark.svg"
+              alt=""
+              class="fahr-check-opacity js-fahr-check"
+            />
+          </div>
+        </div>
+
+        <div class="wind-speed-options">
+          <div class="wind-speed-header">Wind Speed</div>
+          <div class="speed-opt-1 js-speed-opt-1">
+            <p class="speed-opt-1-text">km/hr</p>
+            <img
+              src="assets/images/icon-checkmark.svg"
+              alt=""
+              class="speed-opt-1-check js-speed-opt-1-check"
+            />
+          </div>
+          <div class="speed-opt-2 speed-opt-2-imperial js-speed-opt-2">
+            <p class="speed-opt-2-text">mph</p>
+            <img
+              src="assets/images/icon-checkmark.svg"
+              alt=""
+              class="speed-opt-2-check-opacity js-speed-opt-2-check"
+            />
+          </div>
+        </div>
+
+        <div class="precipit-options">
+          <div class="precipit-opt-text">Precipitation</div>
+          <div class="precipit-opt-1 js-precipit-opt-1">
+            <p class="precipit-opt-1-text">Millimeters (mm)</p>
+            <img
+              src="assets/images/icon-checkmark.svg"
+              alt=""
+              class="precipit-opt-1-check js-precipit-opt-1-check"
+            />
+          </div>
+          <div class="precipit-opt-2 precipit-opt-2-imperial js-precipit-opt-2">
+            <p class="precipit-opt-2-text">Inches (in)</p>
+            <img
+              src="assets/images/icon-checkmark.svg"
+              alt=""
+              class="precipit-opt-2-check-opacity js-precipit-opt-2-check"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Daya of the week dropdown -->
+      <div class="days-of-the-week js-days-element">
+        <div class="mon">Monday</div>
+        <div class="tue selected-day">Tuesday</div>
+        <div class="wed">Wednesday</div>
+        <div class="thurs">Thursday</div>
+        <div class="fri">Friday</div>
+        <div class="sat">Saturday</div>
+        <div class="sun">Sunday</div>
+      </div>
+
+      <div class="search-dropdown">
+        <div class="cn-1">City Name</div>
+        <div class="cn-2">City Name</div>
+        <div class="cn-3">City Name</div>
+        <div class="cn-4">City Name</div>
+      </div>
+      <!-- Switch to Imperial/Metric T , e.g., New York
+      Search -->
+    </div>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+      Coded by <a href="#">Shoga Oluwaseye</a>.
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
