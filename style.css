@@ -439,6 +439,8 @@ header {
   padding-left: 1.44rem;
   border-radius: 0.98rem;
   width: 23.2rem;
+  /* width: 100%; */
+  /* max-width: 23.2rem; */
 }
 
 .hour-1-weather-icon,
@@ -468,6 +470,7 @@ header {
   border-radius: 0.58rem;
   border: var(--color-neutral-300) solid 0.1rem;
   align-items: center;
+  /* width: 100%; */
 }
 
 .hourly-header {
@@ -722,10 +725,8 @@ header {
 @media (max-width: 375px) {
   .container {
     margin-top: 0.6rem;
-    /* margin-left: 12.4rem;
-    margin-right: 15 rem; */
-    border: red solid 0.2rem;
-    width: 95%;
+    /* border: red solid 0.2rem; */
+    width: 93%;
     position: relative;
   }
 
@@ -748,6 +749,7 @@ header {
     font-size: 3.3rem;
     margin-top: 3.2rem;
     text-align: center;
+    max-width: 98%;
   }
 
   .search {
@@ -755,6 +757,7 @@ header {
     align-items: center;
     justify-self: center;
     margin-top: 3.4rem;
+    width: 100%;
   }
 
   .main-search {
@@ -771,7 +774,7 @@ header {
   }
 
   .search-container-input {
-    width: 16.49rem;
+    width: 12rem;
   }
 
   .search-button {
@@ -788,7 +791,7 @@ header {
       "attribute"
       "daily"
       "hourly";
-    gap: 2rem;
+    gap: 1.1rem;
   }
 
   .display {
@@ -798,11 +801,9 @@ header {
     background-size: cover;
     display: block;
     justify-content: center;
-    width: 88%;
-    /* padding-left: 1.6rem;
-    padding-right: 1.4rem; */
+    width: 100%;
     padding-top: 2.2rem;
-    padding-bottom: 2.8rem;
+    padding-bottom: 2.5rem;
     border-radius: 0.8rem;
   }
 
@@ -835,6 +836,7 @@ header {
     width: 7.8rem;
     height: 7.8rem;
     align-self: center;
+    margin-top: -0.2rem;
   }
 
   .display-temp {
@@ -853,6 +855,12 @@ header {
 
   .hourly-forcast-container {
     grid-area: hourly;
+    width: 100%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-right: 0.67rem;
+    padding-left: 0.67rem;
+    margin-top: 0.7rem;
   }
 
   .daily-forecast-container {
@@ -862,11 +870,62 @@ header {
   .days-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.9rem;
+  }
+
+  .daily-header {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+  .day-1-weather-icon,
+  .day-2-weather-icon,
+  .day-3-weather-icon,
+  .day-4-weather-icon,
+  .day-5-weather-icon,
+  .day-6-weather-icon,
+  .day-7-weather-icon {
+    margin-top: 0.76rem;
+    margin-left: 0.75rem;
+  }
+
+  .day-2,
+  .day-3,
+  .day-4,
+  .day-5,
+  .day-6,
+  .day-7 {
+    margin-left: 0;
   }
 
   .weather-attributes {
     grid-area: attribute;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+  }
+
+  .feels-container {
+    padding-right: 2.05rem;
+  }
+
+  .humidity-container {
+    padding-right: 2rem;
+    margin-left: 0;
+  }
+
+  .wind-container {
+    padding-right: 2rem;
+    margin-left: 0;
+  }
+
+  .wind-container-rpd {
+    padding-right: 2rem;
+    margin-left: 0;
+  }
+
+  .precip-container {
+    padding-right: 2rem;
+    margin-left: 0;
   }
 }
