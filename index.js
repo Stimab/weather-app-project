@@ -345,3 +345,4 @@ searchInput.addEventListener("click", () => {
     searchDropdown.classList.remove("search-dropdown-display");
   }
 });
+

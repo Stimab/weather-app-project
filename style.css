@@ -542,12 +542,10 @@ header {
   border-radius: 0.8rem;
   padding: 0.35rem 0.4rem;
   border: var(--color-neutral-300) solid 0.1rem;
-  /* opacity: 0; */
   display: none;
 }
 
 .unit-options-opacity {
-  /* opacity: 1; */
   display: block;
 }
 
@@ -726,7 +724,7 @@ header {
   .container {
     margin-top: 0.6rem;
     /* border: red solid 0.2rem; */
-    width: 93%;
+    width: 91.2%;
     position: relative;
   }
 
@@ -799,12 +797,13 @@ header {
     background: url(assets/images/bg-today-small.svg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: 0rem 0rem;
     display: block;
     justify-content: center;
     width: 100%;
     padding-top: 2.2rem;
     padding-bottom: 2.5rem;
-    border-radius: 0.8rem;
+    border-radius: 1.3rem;
   }
 
   .location-date {
@@ -920,12 +919,46 @@ header {
   }
 
   .wind-container-rpd {
-    padding-right: 2rem;
+    padding-right: 1.5rem;
     margin-left: 0;
   }
 
   .precip-container {
     padding-right: 2rem;
     margin-left: 0;
+  }
+
+  .search-dropdown {
+    left: 0rem;
+    top: 28.8rem;
+    width: 100%;
+    display: none;
+  }
+
+  .search-dropdown-display {
+    display: block;
+  }
+
+  .unit-options {
+    width: 57.6%;
+    top: 2.7rem;
+    right: 0rem;
+    display: none;
+  }
+
+  .unit-options-opacity {
+    display: block;
+  }
+
+  /* Days of the week Dropdown */
+  .days-of-the-week {
+    right: 0.2rem;
+    top: 109rem;
+    width: 56.5%;
+    display: none;
+  }
+
+  .days-of-the-week-opacity {
+    display: block;
   }
 }
