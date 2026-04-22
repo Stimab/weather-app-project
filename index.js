@@ -1,3 +1,5 @@
+let currentUnit = "imperial"; // default
+
 const unitSwitch = document.querySelector(".js-unit-switch");
 const degreeCel = document.querySelector(".js-degree-cel");
 const degreeFahr = document.querySelector(".js-degree-fahr");
@@ -85,18 +87,19 @@ function switchToImperial() {
 unitSwitch.addEventListener("click", () => {
   if (unitSwitch.innerHTML === "Switch to Metric") {
     unitSwitch.innerHTML = "Switch to Imperial";
+    currentUnit = "metric";
     switchToMetric();
     toCelsius();
     toKilometerPerHour();
     toMillimeter();
   } else {
     unitSwitch.innerHTML = "Switch to Metric";
+    currentUnit = "imperial";
     switchToImperial();
     toFahrenheit();
     toMilePerHour();
     toInches();
   }
-  console.log("hello");
 });
 
 const units = document.querySelector(".js-unit");
@@ -505,6 +508,9 @@ searchBtn.addEventListener("click", async () => {
     return;
   }
 
+  lastWeatherData = data;
+  updateUI(data);
+
   // Success — show details, hide any errors
   details.classList.remove("details-not-displayed");
   updateUI(data);
@@ -521,7 +527,6 @@ async function getWeather(locationInput) {
       [city, country] = locationInput.split(",").map((item) => item.trim());
     }
 
-    // Geocoding
     let geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`;
     if (country) geoUrl += `&country=${country}`;
 
@@ -533,19 +538,23 @@ async function getWeather(locationInput) {
     }
 
     const geoData = await geoRes.json();
-
     if (!geoData.results?.length) return { error: "not_found" };
 
     const { latitude, longitude } = geoData.results[0];
     name = geoData.results[0].name;
     countryName = geoData.results[0].country;
 
+    // Dynamically set units based on currentUnit state
+    const tempUnit = currentUnit === "metric" ? "celsius" : "fahrenheit";
+    const windUnit = currentUnit === "metric" ? "kmh" : "mph";
+    const precipUnit = currentUnit === "metric" ? "mm" : "inch";
+
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}
       &current_weather=true
       &current=apparent_temperature
-      &temperature_unit=fahrenheit
-      &windspeed_unit=mph
-      &precipitation_unit=inch
+      &temperature_unit=${tempUnit}
+      &windspeed_unit=${windUnit}
+      &precipitation_unit=${precipUnit}
       &hourly=temperature_2m,relative_humidity_2m,weathercode
       &daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum,sunrise,sunset`;
 
@@ -645,6 +654,7 @@ function updateUI(data) {
     `${data.daily.precipitation_sum?.[0] ?? 0} in`;
 
   // ── Hourly Forecast (8 slots) ────────────────────
+  updateHourlyForecast(0);
   const now = new Date();
   const currentHour = now.getHours();
 
@@ -714,3 +724,77 @@ function getWeatherIcon(code) {
   if (code === 95 || code >= 96) return "assets/images/icon-storm.webp";
   return "assets/images/icon-sunny.webp"; // fallback
 }
+
+let lastWeatherData = null;
+
+function updateHourlyForecast(dayOffset = 0) {
+  if (!lastWeatherData) return;
+
+  // Each day has 24 hours in the hourly array
+  const startIndex = dayOffset * 24;
+
+  // Use current hour offset only for today
+  const hourOffset = dayOffset === 0 ? new Date().getHours() : 0;
+
+  for (let i = 1; i <= 8; i++) {
+    const hourIndex = startIndex + hourOffset + i;
+    const temp = lastWeatherData.hourly.temperature_2m[hourIndex];
+    const weathercode = lastWeatherData.hourly.weathercode?.[hourIndex] ?? 0;
+    const timeLabel = formatHour(hourOffset + i + (dayOffset === 0 ? 0 : 0));
+
+    // Calculate actual hour of day for label
+    const actualHour = (hourOffset + i) % 24;
+    document.querySelector(`.hour-${i}-time`).textContent =
+      formatHour(actualHour);
+    document.querySelector(`.hour-${i}-degree`).innerHTML =
+      `${Math.round(temp)}&deg;`;
+    document.querySelector(`.hour-${i}-weather-icon`).src =
+      getWeatherIcon(weathercode);
+  }
+}
+
+const dayMap = [
+  { el: monday, label: "Monday", offset: null },
+  { el: tuesday, label: "Tuesday", offset: null },
+  { el: wednesday, label: "Wednesday", offset: null },
+  { el: thursday, label: "Thursday", offset: null },
+  { el: friday, label: "Friday", offset: null },
+  { el: saturday, label: "Saturday", offset: null },
+  { el: sunday, label: "Sunday", offset: null },
+];
+
+// Compute offsets dynamically based on today
+function computeDayOffsets() {
+  const todayIndex = new Date().getDay(); // 0=Sun, 1=Mon ... 6=Sat
+  const jsOrder = ["sun", "mon", "tue", "wed", "thurs", "fri", "sat"];
+  const dayMapOrder = ["mon", "tue", "wed", "thurs", "fri", "sat", "sun"];
+
+  dayMap.forEach((day, i) => {
+    const dayKey = dayMapOrder[i];
+    const dayJsIndex = jsOrder.indexOf(dayKey);
+    let offset = dayJsIndex - todayIndex;
+    if (offset < 0) offset += 7;
+    day.offset = offset;
+  });
+}
+
+computeDayOffsets();
+
+dayMap.forEach(({ el, label, offset }, index) => {
+  el.addEventListener("click", () => {
+    // Remove selected-day from all
+    dayMap.forEach(({ el }) => el.classList.remove("selected-day"));
+
+    // Add to clicked
+    el.classList.add("selected-day");
+
+    // Update label
+    hoursDay.innerHTML = label;
+
+    // Re-render hourly for that day
+    updateHourlyForecast(dayMap[index].offset);
+
+    // Close dropdown
+    daysElement.classList.remove("days-of-the-week-opacity");
+  });
+});
