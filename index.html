@@ -43,6 +43,7 @@
               placeholder="Search for a place..."
               class="search-container-input"
               spellcheck="false"
+              required
             />
           </div>
         </div>
@@ -381,8 +382,17 @@
         <div class="cn-3">City Name</div>
         <div class="cn-4">City Name</div>
       </div>
-      <!-- Switch to Imperial/Metric T , e.g., New York
-      Search -->
+
+      <div class="searching">
+        <img src="assets/images/icon-loading.svg" />
+        <p>Search in progress</p>
+      </div>
+
+      <div class="no-result js-no-result">No search result found!</div>
+      <div class="network-error js-network-error">
+        <img src="assets/images/icon-loading.svg" class="network-error-icon" />
+        <p>No internet connection. Please check your network.</p>
+      </div>
     </div>
 
     <div class="attribution">

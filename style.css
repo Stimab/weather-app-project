@@ -52,6 +52,7 @@
   --color-orange-500: hsl(28, 100%, 52%);
   --color-blue-500: hsl(233, 67%, 56%);
   --color-blue-700: hsl(248, 70%, 36%);
+  --accent: #00ffc8;
 }
 
 body {
@@ -201,6 +202,10 @@ header {
   gap: 2rem;
   margin-top: 3.2rem;
   width: 100%;
+}
+
+.details-not-displayed {
+  display: none;
 }
 
 .display {
@@ -719,6 +724,77 @@ header {
   background-color: var(--color-neutral-700);
 }
 
+.searching {
+  background-color: var(--color-neutral-800);
+  padding: 0.8rem 0.95rem;
+  position: absolute;
+  left: 17.5rem;
+  top: 18.8rem;
+  width: 43.7%;
+  border-radius: 0.65rem;
+  /* display: flex; */
+  display: none;
+}
+
+.searching-display {
+  display: flex;
+}
+
+.searching p {
+  margin-left: 0.8rem;
+  opacity: 0.9;
+}
+
+.searching img {
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.no-result {
+  justify-self: center;
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04rem;
+  display: none;
+}
+
+.no-result-display {
+  display: block;
+}
+
+.network-error {
+  justify-self: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.04rem;
+  display: none;
+  align-items: center;
+  gap: 0.8rem;
+  background-color: var(--color-neutral-800);
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  border: var(--color-neutral-300) solid 0.09rem;
+  color: var(--color-orange-500);
+}
+
+.network-error-display {
+  display: flex;
+}
+
+.network-error-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  /* reuse your spin animation */
+  animation: spin 1.5s linear infinite;
+}
+
 /* Mobile View */
 @media (max-width: 375px) {
   .container {
@@ -790,6 +866,10 @@ header {
       "daily"
       "hourly";
     gap: 1.1rem;
+  }
+
+  .details-not-displayed {
+    display: none;
   }
 
   .display {
@@ -959,6 +1039,26 @@ header {
   }
 
   .days-of-the-week-opacity {
+    display: block;
+  }
+
+  .searching {
+    left: 0rem;
+    top: 29rem;
+    width: 100%;
+    display: none;
+  }
+
+  .searching-display {
+    display: flex;
+  }
+
+  .no-result {
+    font-size: 1.2rem;
+    display: none;
+  }
+
+  .no-result-display {
     display: block;
   }
 }
