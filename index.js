@@ -488,6 +488,7 @@ searchBtn.addEventListener("click", async () => {
   const city = searchInput.value.trim();
   if (!city) return;
 
+  // Clear any previous error messages
   clearMessages();
 
   searching.classList.add("searching-display");
@@ -509,6 +510,7 @@ searchBtn.addEventListener("click", async () => {
   }
 
   lastWeatherData = data;
+  setDefaultDay(); // reset to today whenever a new search is made
   updateUI(data);
 
   // Success — show details, hide any errors
@@ -590,35 +592,35 @@ function clearMessages() {
   networkError.classList.remove("network-error-display");
 }
 
-searchBtn.addEventListener("click", async () => {
-  if (searchDropdown.classList.contains("search-dropdown-display")) {
-    searchDropdown.classList.remove("search-dropdown-display");
-  }
+// searchBtn.addEventListener("click", async () => {
+//   if (searchDropdown.classList.contains("search-dropdown-display")) {
+//     searchDropdown.classList.remove("search-dropdown-display");
+//   }
 
-  const city = searchInput.value.trim();
-  if (!city) return;
+//   const city = searchInput.value.trim();
+//   if (!city) return;
 
-  // Clear any previous error messages
-  clearMessages();
+//   // Clear any previous error messages
+//   clearMessages();
 
-  searching.classList.add("searching-display");
+//   searching.classList.add("searching-display");
 
-  const data = await getWeather(city);
+//   const data = await getWeather(city);
 
-  searching.classList.remove("searching-display");
+//   searching.classList.remove("searching-display");
 
-  if (!data || data.error) {
-    if (data?.error === "not_found") {
-      noResult.classList.add("no-result-display");
-    } else {
-      // network error or anything unexpected
-      networkError.classList.add("network-error-display");
-    }
-    return;
-  }
+//   if (!data || data.error) {
+//     if (data?.error === "not_found") {
+//       noResult.classList.add("no-result-display");
+//     } else {
+//       // network error or anything unexpected
+//       networkError.classList.add("network-error-display");
+//     }
+//     return;
+//   }
 
-  updateUI(data);
-});
+//   updateUI(data);
+// });
 
 searchInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
@@ -778,8 +780,6 @@ function computeDayOffsets() {
   });
 }
 
-computeDayOffsets();
-
 dayMap.forEach(({ el, label, offset }, index) => {
   el.addEventListener("click", () => {
     // Remove selected-day from all
@@ -798,3 +798,31 @@ dayMap.forEach(({ el, label, offset }, index) => {
     daysElement.classList.remove("days-of-the-week-opacity");
   });
 });
+
+function setDefaultDay() {
+  const dayNames = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const todayName = dayNames[new Date().getDay()];
+
+  // Update the hours-day label to today's actual day
+  hoursDay.innerHTML = todayName;
+
+  // Remove selected-day from all days
+  dayMap.forEach(({ el }) => el.classList.remove("selected-day"));
+
+  // Add selected-day to today's element
+  const todayEntry = dayMap.find(({ label }) => label === todayName);
+  if (todayEntry) {
+    todayEntry.el.classList.add("selected-day");
+  }
+}
+
+computeDayOffsets();
+setDefaultDay(); // add this right after computing offsets to set the initial state correctly
