@@ -1,3 +1,9 @@
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+const today = dayjs();
+console.log(today.format("dddd, MMMM D, YYYY"));
+const dateString = today.format("dddd, MMMM D, YYYY");
+document.querySelector(".date").textContent = dateString;
+
 let currentUnit = "imperial"; // default
 
 const unitSwitch = document.querySelector(".js-unit-switch");
@@ -587,10 +593,10 @@ async function getWeather(locationInput) {
 const noResult = document.querySelector(".js-no-result");
 const networkError = document.querySelector(".js-network-error");
 
-function clearMessages() {
-  noResult.classList.remove("no-result-display");
-  networkError.classList.remove("network-error-display");
-}
+// function clearMessages() {
+//   noResult.classList.remove("no-result-display");
+//   networkError.classList.remove("network-error-display");
+// }
 
 // searchBtn.addEventListener("click", async () => {
 //   if (searchDropdown.classList.contains("search-dropdown-display")) {
@@ -825,4 +831,4 @@ function setDefaultDay() {
 }
 
 computeDayOffsets();
-setDefaultDay(); // add this right after computing offsets to set the initial state correctly
+setDefaultDay();
