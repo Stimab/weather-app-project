@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-A responsive weather dashboard built with HTML, CSS and JavaScript using the Open-Meteo API.
+Responsive weather dashboard using JavaScript and the Open-Meteo API to display current and forecast weather data.
 
 ## Live Demo
 
